@@ -6,4 +6,4 @@
 
 # Use hdump with a example file
 
-*$ ./hdump xor.c*
+*$ hdump xor.c*
