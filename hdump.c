@@ -24,9 +24,13 @@ int main(int argc, char *argv[])
 
     ch = getc(fp);
     for(i = 0;ch != EOF;i++,characters[i] = ch){
+        printf("\033[0;32m");
         printf("%.8X ",offset);
+        printf("\033[0m");
         for(i = 0; i < 10 && ch != EOF; i++){
+            printf("\033[0;34m");
             printf("%.2X ",ch);
+            printf("\033[0m");
             characters[i] = ch;
             ch = getc(fp);
         }
@@ -36,10 +40,12 @@ int main(int argc, char *argv[])
         printf(" ");
 
         for(j = 0; j < z; j++){
+            printf("\033[0;36m");
             if(!isprint(characters[j]))
                 printf(".");
             else
                 printf("%c",characters[j]);
+            printf("\033[0m");
         }
 
         printf("\n");
