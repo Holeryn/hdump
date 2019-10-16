@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <unistd.h>
+#include <sys/ioctl.h>
 
 #define FILEM argv[1]
 #define LENGTH 10
@@ -8,10 +10,15 @@
 int main(int argc, char *argv[])
 {
     FILE *fp;
-    int i,j,z;
+    int i,j,z,t;
     int ch;
     int offset = 0;
     char characters[LENGTH];
+
+/*  Get Screen REsolution */
+    struct winsize ws;
+	ioctl(STDIN_FILENO, TIOCGWINSZ, &ws);
+    int heigth = ws.ws_col;
 
     printf(" Offset               Bytes              Characters\n");
     printf("-------- ------------------------------ -----------\n");
@@ -23,7 +30,14 @@ int main(int argc, char *argv[])
     }
 
     ch = getc(fp);
-    for(i = 0;ch != EOF;i++,characters[i] = ch){
+    for(i = 0,t = 0;ch != EOF;i++,characters[i] = ch,t++){
+
+        if(t == heigth){
+            t = 0;
+            printf("Premi un tast per continuare : ");
+            getc(stdin);
+        }
+
         printf("\033[0;32m");
         printf("%.8X ",offset);
         printf("\033[0m");
