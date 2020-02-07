@@ -1,3 +1,5 @@
+# Forked from my lost github page
+
 # hdump
 
 # Compile with make
@@ -6,4 +8,6 @@
 
 # Use hdump with a example file
 
-$ hdump xor.c
+$ hdump hdump.c
+
+![](https://github.com/Holeryn/hdump/blob/master/img/screenshot.png)
