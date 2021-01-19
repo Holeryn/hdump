@@ -1,5 +1,3 @@
-# Forked from my lost github page
-
 # hdump
 
 # Compile with make
